@@ -1,0 +1,33 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="bg-navy-900 text-gray-400">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div>
+        <p class="text-white font-semibold mb-2">Regatta Product Development</p>
+        <p class="text-sm">Headquartered in Aubrey, Texas</p>
+      </div>
+      <div>
+        <p class="text-white font-semibold mb-3">Services</p>
+        <ul class="space-y-1 text-sm">
+          <li><a href="/services/design" class="hover:text-white transition-colors">Design Services</a></li>
+          <li><a href="/services/tooling" class="hover:text-white transition-colors">Tooling & Production Setup</a></li>
+          <li><a href="/services/production" class="hover:text-white transition-colors">Production Integration</a></li>
+          <li><a href="/services/fulfillment" class="hover:text-white transition-colors">Fulfillment Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white font-semibold mb-3">Company</p>
+        <ul class="space-y-1 text-sm">
+          <li><a href="/about" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="/portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
+          <li><a href="/contact" class="hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-navy-800 pt-6 text-sm text-center">
+      © {year} Regatta Product Development. All rights reserved.
+    </div>
+  </div>
+</footer>
