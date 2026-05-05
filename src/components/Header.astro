@@ -7,7 +7,8 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
-const currentPath = Astro.url.pathname;
+const rawPath = Astro.url.pathname;
+const currentPath = rawPath === '/' ? '/' : rawPath.replace(/\/$/, '');
 ---
 <header class="bg-navy-900 text-white sticky top-0 z-40 shadow-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,7 +23,7 @@ const currentPath = Astro.url.pathname;
             href={link.href}
             class:list={[
               'text-sm font-medium transition-colors hover:text-brand-orange',
-              currentPath === link.href ? 'text-brand-orange' : 'text-gray-300',
+              (link.href !== '/' ? currentPath.startsWith(link.href) : currentPath === '/') ? 'text-brand-orange' : 'text-gray-300',
             ]}
           >
             {link.label}
@@ -36,7 +37,7 @@ const currentPath = Astro.url.pathname;
         </button>
       </nav>
 
-      <button id="mobile-menu-toggle" class="md:hidden text-gray-300 hover:text-white p-1">
+      <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-gray-300 hover:text-white p-1">
         <span class="sr-only">Toggle menu</span>
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -65,5 +66,9 @@ const currentPath = Astro.url.pathname;
 <script>
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
-  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    const isOpen = !menu?.classList.contains('hidden');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
 </script>
