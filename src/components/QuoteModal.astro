@@ -99,18 +99,20 @@
   form.addEventListener('submit', async e => {
     e.preventDefault();
     try {
-      await fetch('/', {
+      const res = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(new FormData(form) as any).toString(),
       });
+      if (!res.ok) throw new Error(res.statusText);
       form.reset();
       success.classList.remove('hidden');
       setTimeout(() => {
         modal.close();
         success.classList.add('hidden');
       }, 2000);
-    } catch {
+    } catch (err) {
+      console.error('Quote form submission failed:', err);
       alert('Something went wrong. Please try again.');
     }
   });

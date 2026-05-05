@@ -23,8 +23,8 @@ test.describe('Quote Modal', () => {
   test('closes when backdrop is clicked', async ({ page }) => {
     await page.goto('/');
     await page.click('[data-quote-trigger]');
-    // Click top-left corner of dialog (backdrop area)
-    await page.locator('#quote-modal').click({ position: { x: 1, y: 1 } });
+    // Click well outside the centered dialog (viewport top-left corner = backdrop)
+    await page.mouse.click(10, 10);
     await expect(page.locator('#quote-modal')).not.toBeVisible();
   });
 });
