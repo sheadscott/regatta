@@ -17,7 +17,7 @@ describe('sortPortfolio', () => {
       makeItem({ date: new Date('2024-06-01') }),
     ];
     const result = sortPortfolio(items);
-    expect(result[0].data.date.getFullYear()).toBe(2024);
+    expect(result[0].data.date.getUTCFullYear()).toBe(2024);
   });
 
   it('sorts featured items newest first among themselves', () => {
@@ -26,7 +26,7 @@ describe('sortPortfolio', () => {
       makeItem({ featured: true, date: new Date('2024-01-01') }),
     ];
     const result = sortPortfolio(items);
-    expect(result[0].data.date.getFullYear()).toBe(2024);
+    expect(result[0].data.date.getUTCFullYear()).toBe(2024);
   });
 
   it('does not mutate the input array', () => {
