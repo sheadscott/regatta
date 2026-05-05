@@ -1,2 +1,117 @@
-<!-- Stub — replaced in Task 6 -->
-<dialog id="quote-modal"></dialog>
+<dialog
+  id="quote-modal"
+  class="w-full max-w-lg rounded-lg shadow-2xl p-0 backdrop:bg-black/50 backdrop:backdrop-blur-sm"
+>
+  <div class="bg-white rounded-lg overflow-hidden">
+    <div class="bg-navy-900 px-6 py-4 flex items-center justify-between">
+      <h2 class="text-white font-semibold text-lg">Request a Quote</h2>
+      <button
+        data-modal-close
+        aria-label="Close"
+        class="text-gray-400 hover:text-white transition-colors"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <form
+      id="quote-form"
+      name="quote"
+      method="POST"
+      data-netlify="true"
+      class="p-6 space-y-4"
+    >
+      <input type="hidden" name="form-name" value="quote" />
+
+      <div>
+        <label for="q-name" class="block text-sm font-medium text-gray-700 mb-1">
+          Name <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="text" id="q-name" name="name" required
+          class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange"
+        />
+      </div>
+
+      <div>
+        <label for="q-phone" class="block text-sm font-medium text-gray-700 mb-1">
+          Phone Number <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="tel" id="q-phone" name="phone" required
+          class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange"
+        />
+      </div>
+
+      <div>
+        <label for="q-email" class="block text-sm font-medium text-gray-700 mb-1">
+          Email <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="email" id="q-email" name="email" required
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange text-sm"
+        />
+      </div>
+
+      <div>
+        <label for="q-message" class="block text-sm font-medium text-gray-700 mb-1">
+          Comment or Message <span class="text-red-500">*</span>
+        </label>
+        <textarea
+          id="q-message" name="message" required rows="4"
+          class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange resize-none"
+        ></textarea>
+      </div>
+
+      <p id="quote-success" class="hidden text-green-700 text-sm font-medium">
+        Thank you! We'll be in touch shortly.
+      </p>
+
+      <button
+        type="submit"
+        class="w-full bg-brand-orange hover:bg-orange-600 text-white font-semibold py-2 rounded transition-colors"
+      >
+        Submit Request
+      </button>
+    </form>
+  </div>
+</dialog>
+
+<script>
+  const modal = document.getElementById('quote-modal') as HTMLDialogElement;
+  const form = document.getElementById('quote-form') as HTMLFormElement;
+  const success = document.getElementById('quote-success') as HTMLElement;
+
+  document.querySelectorAll('[data-quote-trigger]').forEach(btn => {
+    btn.addEventListener('click', () => modal.showModal());
+  });
+
+  document.querySelectorAll('[data-modal-close]').forEach(btn => {
+    btn.addEventListener('click', () => modal.close());
+  });
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.close();
+  });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form) as any).toString(),
+      });
+      form.reset();
+      success.classList.remove('hidden');
+      setTimeout(() => {
+        modal.close();
+        success.classList.add('hidden');
+      }, 2000);
+    } catch {
+      alert('Something went wrong. Please try again.');
+    }
+  });
+</script>
