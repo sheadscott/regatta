@@ -15,11 +15,13 @@ const { service } = Astro.props;
 <BaseLayout title={service.title} description={service.description}>
   <section class="bg-navy-900 text-white py-16 px-4">
     <div class="max-w-7xl mx-auto">
-      <p class="text-sm text-gray-400 mb-2">
-        <a href="/services" class="hover:text-brand-orange transition-colors">Services</a>
-        {' / '}
-        <span>{service.title}</span>
-      </p>
+      <nav aria-label="Breadcrumb" class="mb-2">
+        <ol class="flex items-center gap-1 text-sm text-gray-400">
+          <li><a href="/services" class="hover:text-brand-orange transition-colors">Services</a></li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page">{service.title}</li>
+        </ol>
+      </nav>
       <h1 class="text-4xl font-bold mb-4">{service.title}</h1>
       <p class="text-gray-300 text-lg max-w-2xl">{service.tagline}</p>
     </div>
