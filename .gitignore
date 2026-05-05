@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+package-lock.json
+
+# production
+dist/
+
+# astro
+.astro/
+
+# environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# testing
+coverage/
+.nyc_output/
