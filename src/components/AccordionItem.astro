@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  content: string;
+}
+const { title, content } = Astro.props;
+---
+<details class="group border-b border-gray-200">
+  <summary class="flex items-center justify-between cursor-pointer py-4 font-semibold text-navy-900 hover:text-brand-orange transition-colors list-none">
+    <span>{title}</span>
+    <svg
+      class="w-5 h-5 flex-shrink-0 ml-4 text-brand-orange transition-transform group-open:rotate-180"
+      fill="none" stroke="currentColor" viewBox="0 0 24 24"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </summary>
+  <p class="pb-4 text-sm text-gray-600 leading-relaxed">{content}</p>
+</details>
