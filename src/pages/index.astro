@@ -1,10 +1,102 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PortfolioCard from '../components/PortfolioCard.astro';
+import { getCollection } from 'astro:content';
+import { sortPortfolio } from '../utils/portfolio';
+import { services } from '../data/services';
+
+const allPortfolio = await getCollection('portfolio');
+const featured = sortPortfolio(allPortfolio).filter(p => p.data.featured).slice(0, 3);
 ---
-<BaseLayout title="Home">
-  <section class="py-20 px-4 text-center">
-    <h1 class="text-4xl font-bold text-navy-900">Regatta Product Development</h1>
-    <button data-quote-trigger class="mt-6 bg-brand-orange text-white font-semibold px-6 py-2 rounded">
+<BaseLayout
+  title="Dallas's Top Mechanical Design Firm"
+  description="Regatta Product Development delivers all-in-one product development — design, tooling, production, and fulfillment — for start-ups and established businesses in Texas."
+>
+  <!-- Hero -->
+  <section class="bg-navy-900 text-white py-24 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-5xl font-bold leading-tight mb-6 max-w-3xl">
+        From Concept to Reality —<br />All-In-One Product Development
+      </h1>
+      <p class="text-gray-300 text-xl mb-10 max-w-2xl">
+        Regatta Product Development delivers design, tooling, production integration, and fulfillment
+        services for entrepreneurs and established businesses alike.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <button
+          data-quote-trigger
+          class="bg-brand-orange hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded transition-colors"
+        >
+          Request a Quote
+        </button>
+        <a
+          href="/services"
+          class="border border-white hover:border-brand-orange hover:text-brand-orange text-white font-semibold px-8 py-3 rounded transition-colors text-center"
+        >
+          Our Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Overview -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <h2 class="text-3xl font-bold text-navy-900 mb-3">Services & Capabilities</h2>
+    <p class="text-gray-600 mb-10 max-w-2xl">
+      Comprehensive product development under one roof, from initial concept through final delivery.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {services.map(service => (
+        <a
+          href={`/services/${service.slug}`}
+          class="group border border-gray-200 rounded-lg p-5 hover:border-brand-orange transition-colors"
+        >
+          <h3 class="font-semibold text-navy-900 group-hover:text-brand-orange transition-colors mb-2">
+            {service.title}
+          </h3>
+          <p class="text-sm text-gray-600 line-clamp-3">{service.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Featured Portfolio -->
+  {featured.length > 0 && (
+    <section class="bg-gray-50 py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold text-navy-900 mb-3">Featured Work</h2>
+        <p class="text-gray-600 mb-10">A selection of recent product development projects.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featured.map(item => (
+            <PortfolioCard
+              title={item.data.title}
+              category={item.data.category}
+              image={item.data.images[0] ?? '/images/portfolio/placeholder.jpg'}
+            />
+          ))}
+        </div>
+        <div class="mt-10 text-center">
+          <a
+            href="/portfolio"
+            class="border border-navy-900 hover:bg-navy-900 hover:text-white text-navy-900 font-semibold px-8 py-3 rounded transition-colors inline-block"
+          >
+            View All Projects
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA Band -->
+  <section class="bg-brand-orange py-16 px-4 text-center">
+    <h2 class="text-3xl font-bold text-white mb-4">Have a product idea?</h2>
+    <p class="text-orange-100 text-lg mb-8">
+      We work with start-ups, established businesses, and home inventors.
+    </p>
+    <button
+      data-quote-trigger
+      class="bg-white text-brand-orange hover:bg-orange-50 font-semibold px-8 py-3 rounded transition-colors"
+    >
       Request a Quote
     </button>
   </section>
