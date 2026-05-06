@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Contact Us"
+  description="Get in touch with Regatta Product Development in Aubrey, Texas. Request a quote or find our location."
+>
+  <section class="bg-navy-900 text-white py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
+      <p class="text-gray-300 text-lg">
+        We're headquartered in Aubrey, Texas. Let's talk about your project.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <h2 class="text-2xl font-bold text-navy-900 mb-6">Get in Touch</h2>
+        <dl class="space-y-3 text-gray-600 mb-8">
+          <div>
+            <dt class="font-semibold text-navy-900 inline">Address: </dt>
+            <dd class="inline">Aubrey, Texas</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-navy-900 inline">Email: </dt>
+            <dd class="inline">
+              <a href="mailto:info@regattapd.com" class="text-brand-orange hover:underline">
+                info@regattapd.com
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        <div class="bg-navy-900 rounded-lg p-6 text-white">
+          <h3 class="font-semibold text-lg mb-2">Ready to start a project?</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            Request a quote and we'll get back to you within one business day.
+          </p>
+          <button
+            type="button"
+            data-quote-trigger
+            class="bg-brand-orange hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded transition-colors text-sm"
+          >
+            Request a Quote
+          </button>
+        </div>
+      </div>
+
+      <div class="rounded-lg overflow-hidden border border-gray-200 h-96">
+        <!-- Replace src with the real Google Maps embed URL from maps.google.com -->
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53694.81!2d-96.9!3d33.19!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3b5b9f0e3b3d%3A0xc1a7c2e1b2c3d4e5!2sAubrey%2C%20TX!5e0!3m2!1sen!2sus!4v1234567890"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Regatta Product Development — Aubrey, Texas"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
