@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm run build"
+  command = "echo \"TINA_CLIENT_ID=${TINA_CLIENT_ID:+[SET]}\" && echo \"TINA_TOKEN=${TINA_TOKEN:+[SET]}\" && echo \"TINA_BRANCH=${TINA_BRANCH}\" && echo \"Node: $(node -v)\" && echo \"pnpm: $(pnpm -v)\" && pnpm run build"
   publish = "dist"
 
 [build.environment]
