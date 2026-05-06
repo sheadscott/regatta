@@ -6,8 +6,8 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "tinacms dev -c \"astro dev\"",
+    "build": "tinacms build && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
@@ -17,11 +17,14 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/tailwind": "^6.0.2",
+    "@tinacms/cli": "^2.2.5",
     "astro": "^6.2.2",
-    "tailwindcss": "^3.4.19"
+    "tailwindcss": "^3.4.19",
+    "tinacms": "^3.7.5"
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",
     "vitest": "^4.1.5"
-  }
+  },
+  "packageManager": "pnpm@8.3.1+sha1.75c6e8a4075abfc494770f998bf37b9ada110f51"
 }
