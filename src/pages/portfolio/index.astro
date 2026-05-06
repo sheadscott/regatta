@@ -25,11 +25,12 @@ const sorted = sortPortfolio(allPortfolio);
       <p class="text-gray-500 text-center py-12">Portfolio coming soon.</p>
     ) : (
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sorted.map(item => (
+        {sorted.map((item, i) => (
           <PortfolioCard
             title={item.data.title}
             category={item.data.category}
             image={item.data.images[0] ?? '/images/portfolio/placeholder.jpg'}
+            loading={i < 3 ? 'eager' : 'lazy'}
           />
         ))}
       </div>

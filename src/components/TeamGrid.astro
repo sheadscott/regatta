@@ -10,7 +10,7 @@ const sorted = [...members].sort((a, b) => a.data.order - b.data.order);
       <div class="w-24 h-24 mx-auto rounded-full overflow-hidden bg-gray-200 mb-3">
         <img
           src={member.data.photo}
-          alt={member.data.name}
+          alt={`${member.data.name}, ${member.data.role}`}
           class="w-full h-full object-cover"
           loading="lazy"
           width="96"
