@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TeamGrid from '../components/TeamGrid.astro';
+---
+<BaseLayout
+  title="About Us"
+  description="Founded in 1999, Regatta Product Development provides unsurpassed product development solutions headquartered in Aubrey, Texas."
+>
+  <section class="bg-navy-900 text-white py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4">About Regatta</h1>
+      <p class="text-gray-300 text-lg max-w-2xl">Pioneering innovation in product development since 1999.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-3xl mb-16">
+      <h2 class="text-2xl font-bold text-navy-900 mb-6">Our Story</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Founded in 1999 as RHP Industries, Regatta Product Development provides unsurpassed product
+        development solutions and manufacturing services for a variety of products — from entrepreneurs
+        with a first idea to well-established companies launching new lines.
+      </p>
+      <p class="text-gray-600 leading-relaxed">
+        From the inception of an idea to order fulfillment and delivery, we deliver end-to-end solutions
+        across concept exploration, product design, production tooling, manufacturing, and fulfillment.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <div class="bg-navy-900 rounded-lg p-6 text-white">
+        <h3 class="font-bold text-lg mb-3">Mission</h3>
+        <p class="text-gray-300 text-sm leading-relaxed">
+          Provide unsurpassed product solutions using the finest design practices and most thorough
+          development process for complete production design, development and deployment solutions to
+          ensure the success of our clients.
+        </p>
+      </div>
+      <div class="border border-gray-200 rounded-lg p-6">
+        <h3 class="font-bold text-lg text-navy-900 mb-3">Vision</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          To be the premier product development company building life-long committed relationships with
+          our customers, suppliers, employees and professional peers — with global recognition for
+          continued expansion, growth, and success.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-gray-50 py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-navy-900 mb-10">Our Team</h2>
+      <TeamGrid />
+    </div>
+  </section>
+
+  <section class="bg-navy-900 text-white py-16 px-4 text-center">
+    <h2 class="text-2xl font-bold mb-4">Work with us</h2>
+    <p class="text-gray-300 mb-8">Tell us about your product and let's build something together.</p>
+    <button
+      type="button"
+      data-quote-trigger
+      class="bg-brand-orange hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded transition-colors"
+    >
+      Request a Quote
+    </button>
+  </section>
+</BaseLayout>

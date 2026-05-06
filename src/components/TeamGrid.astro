@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+
+const members = await getCollection('team');
+const sorted = [...members].sort((a, b) => a.data.order - b.data.order);
+---
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+  {sorted.map(member => (
+    <div class="text-center">
+      <div class="w-24 h-24 mx-auto rounded-full overflow-hidden bg-gray-200 mb-3">
+        <img
+          src={member.data.photo}
+          alt={member.data.name}
+          class="w-full h-full object-cover"
+          loading="lazy"
+          width="96"
+          height="96"
+        />
+      </div>
+      <p class="font-semibold text-navy-900 text-sm">{member.data.name}</p>
+      <p class="text-xs text-gray-500 mt-0.5">{member.data.role}</p>
+    </div>
+  ))}
+</div>
