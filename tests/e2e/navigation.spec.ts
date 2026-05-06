@@ -14,12 +14,12 @@ test('hero Request a Quote button opens modal', async ({ page }) => {
 
 test('services overview page loads', async ({ page }) => {
   await page.goto('/services');
-  await expect(page.locator('h1')).toContainText('Services');
+  await expect(page.locator('main h1')).toContainText('Services');
 });
 
 test('design service detail page loads and accordion works', async ({ page }) => {
   await page.goto('/services/design');
-  await expect(page.locator('h1')).toContainText('Design Services');
+  await expect(page.locator('main h1')).toContainText('Design Services');
   const firstAccordion = page.locator('details').first();
   await firstAccordion.click();
   await expect(firstAccordion).toHaveAttribute('open', '');
@@ -27,15 +27,15 @@ test('design service detail page loads and accordion works', async ({ page }) =>
 
 test('portfolio page loads', async ({ page }) => {
   await page.goto('/portfolio');
-  await expect(page.locator('h1')).toContainText('Portfolio');
+  await expect(page.locator('main h1')).toContainText('Portfolio');
 });
 
 test('about page loads', async ({ page }) => {
   await page.goto('/about');
-  await expect(page.locator('h1')).toContainText('About');
+  await expect(page.locator('main h1')).toContainText('About');
 });
 
 test('contact page loads', async ({ page }) => {
   await page.goto('/contact');
-  await expect(page.locator('h1')).toContainText('Contact');
+  await expect(page.locator('main h1')).toContainText('Contact');
 });
