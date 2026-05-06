@@ -4,23 +4,23 @@ import { getCollection } from 'astro:content';
 const members = await getCollection('team');
 const sorted = [...members].sort((a, b) => a.data.order - b.data.order);
 ---
-<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-10">
   {sorted.map(member => (
     <div class="text-center">
-      <div class="w-24 h-24 mx-auto rounded-full overflow-hidden bg-gray-200 mb-3">
+      <div class="w-36 h-36 mx-auto rounded-full overflow-hidden bg-gray-200 mb-4">
         <img
           src={member.data.photo}
           alt={`${member.data.name}, ${member.data.role}`}
           class="w-full h-full object-cover"
           loading="lazy"
-          width="96"
-          height="96"
+          width="144"
+          height="144"
         />
       </div>
-      <p class="font-semibold text-navy-900 text-sm">{member.data.name}</p>
-      <p class="text-xs text-gray-500 mt-0.5">{member.data.role}</p>
+      <p class="font-semibold text-navy-900">{member.data.name}</p>
+      <p class="text-sm text-gray-500 mt-1">{member.data.role}</p>
       {member.data.email && (
-        <a href={`mailto:${member.data.email}`} class="text-xs text-brand-orange hover:underline mt-0.5 block">
+        <a href={`mailto:${member.data.email}`} class="text-sm text-brand-orange hover:underline mt-1 block">
           {member.data.email}
         </a>
       )}
