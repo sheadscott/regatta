@@ -4,6 +4,7 @@ node_modules/
 # production
 dist/
 public/admin/
+tina/__generated__/
 
 # astro
 .astro/
