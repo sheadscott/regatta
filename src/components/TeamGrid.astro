@@ -19,6 +19,11 @@ const sorted = [...members].sort((a, b) => a.data.order - b.data.order);
       </div>
       <p class="font-semibold text-navy-900 text-sm">{member.data.name}</p>
       <p class="text-xs text-gray-500 mt-0.5">{member.data.role}</p>
+      {member.data.email && (
+        <a href={`mailto:${member.data.email}`} class="text-xs text-brand-orange hover:underline mt-0.5 block">
+          {member.data.email}
+        </a>
+      )}
     </div>
   ))}
 </div>

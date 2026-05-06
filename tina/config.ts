@@ -46,6 +46,7 @@ export default defineConfig({
           { type: 'string', name: 'role', label: 'Role / Title', required: true },
           { type: 'string', name: 'bio', label: 'Bio', ui: { component: 'textarea' } },
           { type: 'image', name: 'photo', label: 'Photo', required: true },
+          { type: 'string', name: 'email', label: 'Email' },
           { type: 'number', name: 'order', label: 'Display Order (lower = earlier)', required: true },
         ],
       },
