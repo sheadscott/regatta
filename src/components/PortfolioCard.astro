@@ -3,8 +3,9 @@ interface Props {
   title: string;
   category: string;
   image: string;
+  loading?: 'lazy' | 'eager';
 }
-const { title, category, image } = Astro.props;
+const { title, category, image, loading = 'lazy' } = Astro.props;
 ---
 <div class="bg-white rounded-lg overflow-hidden border border-gray-200 group">
   <div class="aspect-video overflow-hidden bg-gray-100">
@@ -12,7 +13,7 @@ const { title, category, image } = Astro.props;
       src={image}
       alt={title}
       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-      loading="lazy"
+      loading={loading}
       width="640"
       height="360"
     />
