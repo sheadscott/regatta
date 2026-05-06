@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PortfolioCard from '../../components/PortfolioCard.astro';
+import { getCollection } from 'astro:content';
+import { sortPortfolio } from '../../utils/portfolio';
+
+const allPortfolio = await getCollection('portfolio');
+const sorted = sortPortfolio(allPortfolio);
+---
+<BaseLayout
+  title="Portfolio"
+  description="Browse Regatta Product Development's portfolio of product design, manufacturing, and fulfillment projects across recreational, medical, industrial, and consumer industries."
+>
+  <section class="bg-navy-900 text-white py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4">Portfolio & Gallery</h1>
+      <p class="text-gray-300 text-lg">
+        Product development projects across recreational, medical, industrial, and consumer industries.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    {sorted.length === 0 ? (
+      <p class="text-gray-500 text-center py-12">Portfolio coming soon.</p>
+    ) : (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sorted.map(item => (
+          <PortfolioCard
+            title={item.data.title}
+            category={item.data.category}
+            image={item.data.images[0] ?? '/images/portfolio/placeholder.jpg'}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+
+  <section class="bg-navy-900 text-white py-16 px-4 text-center">
+    <h2 class="text-2xl font-bold mb-4">Ready to add your product to our portfolio?</h2>
+    <button
+      type="button"
+      data-quote-trigger
+      class="bg-brand-orange hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded transition-colors"
+    >
+      Request a Quote
+    </button>
+  </section>
+</BaseLayout>
