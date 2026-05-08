@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Regatta Product Development — Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+  :root {
+    /* Slightly lighter navy than original mockup but still high-contrast on white text */
+    --navy-900: #0f2745;     /* deepest, used sparingly */
+    --navy-800: #14315a;     /* primary dark surface (was ~#0c1626) */
+    --navy-700: #1b3d6e;     /* hover / accents */
+    --navy-100: #e7eef7;     /* tinted light */
+    --ink: #0f2745;
+    --ink-2: #43577a;
+    --paper: #ffffff;
+    --paper-2: #f6f8fb;
+    --line: #e3e7ee;
+    --accent: #ff7a1a;       /* orange CTA from the netlify mockup */
+    --accent-hover: #e86a0e;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Header ---------- */
+  header.site {
+    background: var(--navy-800);
+    color: #fff;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand img { height: 44px; width: auto; }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+  .nav-links a {
+    font-size: 15px;
+    font-weight: 500;
+    color: #cbd5e1;
+    transition: color .15s ease;
+  }
+  .nav-links a:hover, .nav-links a.active { color: #fff; }
+  .nav-links a.active { color: var(--accent); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background .15s ease, transform .15s ease;
+    border: 0;
+    cursor: pointer;
+  }
+  .btn-accent, .btn-accent:link, .btn-accent:visited { background: var(--accent); color: #fff; }
+  .btn-accent:hover { background: var(--accent-hover); color: #fff; }
+  .btn-ghost {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,.35);
+  }
+  .btn-ghost:hover { border-color: #fff; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: var(--navy-800);
+    color: #fff;
+    padding: 72px 0 96px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    /* faint sail-wave motif */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(900px 400px at 90% -10%, rgba(255,255,255,0.06), transparent 60%),
+      radial-gradient(700px 350px at 0% 110%, rgba(255,122,26,0.08), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 72px;
+    align-items: center;
+    position: relative;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 5vw, 60px);
+    line-height: 1.05;
+    font-weight: 800;
+    margin: 0 0 22px;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero p.lede {
+    font-size: 18px;
+    color: #cbd5e1;
+    margin: 0 0 32px;
+    max-width: 540px;
+    text-wrap: pretty;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .hero-meta {
+    margin-top: 44px;
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+  .hero-meta div { font-size: 13px; color: #94a3b8; }
+  .hero-meta strong {
+    display: block;
+    font-size: 22px;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-image {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3.2;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.5);
+  }
+  .hero-image image-slot {
+    width: 100%;
+    height: 100%;
+  }
+  .hero-image .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-tag {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    background: rgba(15, 39, 69, 0.85);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,.15);
+    pointer-events: none;
+  }
+
+  /* ---------- Trust strip ---------- */
+  .trust {
+    background: var(--paper-2);
+    border-bottom: 1px solid var(--line);
+    padding: 24px 0;
+  }
+  .trust-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .trust-row .label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    font-weight: 600;
+  }
+  .trust-logos {
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .trust-logos .client-logo {
+    height: 32px;
+    width: auto;
+    opacity: .75;
+    filter: grayscale(.2);
+    transition: opacity .2s ease;
+  }
+  .trust-logos .client-logo:hover { opacity: 1; filter: none; }
+  .trust-logos .client-logo--dark {
+    background: #111;
+    padding: 6px 10px;
+    border-radius: 4px;
+  }
+  .trust-logos .logo-ph {
+    height: 28px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-family: 'Inter', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 4px;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent 0 6px,
+      rgba(0,0,0,0.02) 6px 12px
+    );
+  }
+
+  /* ---------- Section heading ---------- */
+  section { padding: 96px 0; }
+  .sec-head {
+    max-width: 720px;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+  .sec-head .eyebrow { color: var(--accent); }
+  .sec-head h2 {
+    font-size: clamp(30px, 3.4vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 14px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .sec-head p {
+    font-size: 17px;
+    color: var(--ink-2);
+    margin: 0;
+  }
+
+  /* ---------- Services ---------- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .svc {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .svc:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -22px rgba(15,39,69,.25);
+    border-color: #cbd5e1;
+  }
+  .svc-img {
+    aspect-ratio: 4 / 3;
+    background: var(--paper-2);
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-img image-slot { width: 100%; height: 100%; }
+  .svc-body { padding: 22px 22px 24px; flex: 1; display: flex; flex-direction: column; }
+  .svc-num {
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .svc-body h3 {
+    font-size: 18px;
+    margin: 0 0 8px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .svc-body p {
+    font-size: 14px;
+    color: var(--ink-2);
+    margin: 0 0 18px;
+    flex: 1;
+  }
+  .svc-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .svc-link span { transition: transform .15s ease; }
+  .svc:hover .svc-link span { transform: translateX(3px); }
+
+  /* ---------- About / Statement ---------- */
+  .about {
+    background: var(--paper-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-grid h2 {
+    font-size: clamp(28px, 3.2vw, 38px);
+    line-height: 1.15;
+    margin: 0 0 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .about-grid p {
+    font-size: 16px;
+    color: var(--ink-2);
+    margin: 0 0 16px;
+    text-wrap: pretty;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 32px;
+  }
+  .stat {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 22px;
+  }
+  .stat .num {
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--navy-800);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat .lbl { font-size: 13px; color: var(--ink-2); }
+  .about-image {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 30px 60px -22px rgba(15,39,69,.25);
+  }
+  .about-image image-slot { width: 100%; height: 100%; }
+
+  /* ---------- Process ---------- */
+  .process-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    counter-reset: step;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .step {
+    padding: 32px 28px;
+    border-right: 1px solid var(--line);
+    counter-increment: step;
+    position: relative;
+  }
+  .step:last-child { border-right: 0; }
+  .step::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 14px;
+  }
+  .step h4 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .step p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+
+  /* ---------- CTA ---------- */
+  .cta {
+    background: var(--navy-800);
+    color: #fff;
+    text-align: center;
+    padding: 88px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(800px 300px at 50% 0%, rgba(255,122,26,.10), transparent 70%);
+    pointer-events: none;
+  }
+  .cta h2 {
+    font-size: clamp(30px, 3.4vw, 42px);
+    margin: 0 0 14px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .cta p {
+    color: #cbd5e1;
+    font-size: 17px;
+    margin: 0 0 32px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer.site {
+    background: var(--navy-900);
+    color: #cbd5e1;
+    padding: 64px 0 28px;
+  }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .foot-brand img { height: 48px; margin-bottom: 16px; }
+  .foot-brand p {
+    font-size: 13px;
+    color: #94a3b8;
+    margin: 0;
+    max-width: 280px;
+  }
+  .foot-col h5 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    margin: 0 0 18px;
+    font-weight: 600;
+  }
+  .foot-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .foot-col a { font-size: 14px; color: #cbd5e1; }
+  .foot-col a:hover { color: #fff; }
+  .foot-bottom {
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+    color: #94a3b8;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .process-list { grid-template-columns: repeat(2, 1fr); }
+    .step:nth-child(2) { border-right: 0; }
+    .step:nth-child(1), .step:nth-child(2) { border-bottom: 1px solid var(--line); }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    section { padding: 64px 0; }
+    .hero { padding: 56px 0 64px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-list { grid-template-columns: 1fr; }
+    .step { border-right: 0; border-bottom: 1px solid var(--line); }
+    .step:last-child { border-bottom: 0; }
+    .foot-grid { grid-template-columns: 1fr; gap: 32px; }
+    .container { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container nav">
+    <a class="brand" href="#">
+      <img src="assets/logo-white.svg" alt="Regatta Product Development" />
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn-accent">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<!-- =========== HERO =========== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Making Your Idea a Reality</span>
+      <h1>From concept to <span class="accent">delivered with success.</span></h1>
+      <p class="lede">
+        Regatta Product Development partners with inventors, brands, and OEMs to design,
+        tool, manufacture, and ship original products — all under one roof, anchored in
+        Aubrey, Texas with a global manufacturing network.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-accent">Request a Quote</a>
+        <a href="#services" class="btn btn-ghost">Explore Services</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>20+ yrs</strong>of design &amp; manufacturing</div>
+        <div><strong>Global</strong>partner network</div>
+        <div><strong>End-to-end</strong>concept → fulfillment</div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img class="hero-img" src="assets/hero-factory.jpg" alt="Manufacturing facility — injection molding line" />
+      <div class="hero-tag">Delivered With Success</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== TRUST =========== -->
+<section class="trust" style="padding: 24px 0;">
+  <div class="container trust-row">
+    <span class="label">Trusted by inventors &amp; OEMs since 2003</span>
+    <div class="trust-logos">
+      <img class="client-logo" src="assets/client-cool-flights.svg" alt="Cool Flights" />
+      <img class="client-logo" src="assets/client-caprite.png" alt="Caprite" />
+      <img class="client-logo client-logo--dark" src="assets/client-highl.png" alt="HIGH L" />
+      <img class="client-logo" src="assets/client-cool-flights.svg" alt="Cool Flights" />
+      <img class="client-logo" src="assets/client-caprite.png" alt="Caprite" />
+    </div>
+  </div>
+</section>
+
+<!-- =========== SERVICES =========== -->
+<section id="services">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Services &amp; Capabilities</span>
+      <h2>Everything you need to bring a product to market.</h2>
+      <p>Four integrated practices that move ideas from sketch to shelf — without juggling vendors.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="svc">
+        <div class="svc-img">
+          <image-slot id="svc-1" shape="rect" placeholder="Product Design photo"></image-slot>
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">01 / DESIGN</div>
+          <h3>Product Design &amp; Development</h3>
+          <p>Industrial design, CAD, prototyping, and engineering for products that look great and produce cleanly.</p>
+          <a class="svc-link" href="#">View capabilities <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="svc">
+        <div class="svc-img">
+          <image-slot id="svc-2" shape="rect" placeholder="Tooling / mold photo"></image-slot>
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">02 / TOOLING</div>
+          <h3>Tooling &amp; Manufacturing Setup</h3>
+          <p>Mold design, fixture build, and process setup for a seamless transition from prototype to production.</p>
+          <a class="svc-link" href="#">View capabilities <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="svc">
+        <div class="svc-img">
+          <image-slot id="svc-3" shape="rect" placeholder="Manufacturing / assembly photo"></image-slot>
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">03 / MAKE</div>
+          <h3>Manufacturing &amp; Assembly</h3>
+          <p>Plastic injection, metal die casting, PCB assembly and beyond — domestic and overseas partners.</p>
+          <a class="svc-link" href="#">View capabilities <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="svc">
+        <div class="svc-img">
+          <image-slot id="svc-4" shape="rect" placeholder="Packaging / fulfillment photo"></image-slot>
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">04 / SHIP</div>
+          <h3>Packaging &amp; Fulfillment</h3>
+          <p>Retail-ready packaging plus web-sale and EDI fulfillment for big-box retailers.</p>
+          <a class="svc-link" href="#">View capabilities <span>→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========== ABOUT =========== -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div>
+      <span class="eyebrow">About Regatta</span>
+      <h2>Many years of experience, distilled into one disciplined process.</h2>
+      <p>
+        Regatta Product Development specializes in product design, system development,
+        project management, market development, and original product manufacturing — blending
+        the strong relationships of various design disciplines with a solid foundation in
+        manufacturing with partners around the world.
+      </p>
+      <p>
+        The result: a powerfully effective and interactive service for world-class design,
+        development, and manufacturing of new products — at the highest quality and the lowest cost.
+      </p>
+      <div class="about-stats">
+        <div class="stat"><div class="num">200+</div><div class="lbl">Products developed &amp; shipped</div></div>
+        <div class="stat"><div class="num">20+</div><div class="lbl">Years of manufacturing know-how</div></div>
+        <div class="stat"><div class="num">1</div><div class="lbl">Roof — design through fulfillment</div></div>
+        <div class="stat"><div class="num">∞</div><div class="lbl">Iterations until it's right</div></div>
+      </div>
+    </div>
+    <div class="about-image">
+      <image-slot id="about-shot" shape="rect"
+        placeholder="Workshop / team / facility photo (4:5)"></image-slot>
+    </div>
+  </div>
+</section>
+
+<!-- =========== PROCESS =========== -->
+<section style="padding: 96px 0;">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">How We Work</span>
+      <h2>A clear path from idea to delivery.</h2>
+    </div>
+    <div class="process-list">
+      <div class="step">
+        <h4>Discover</h4>
+        <p>Goals, constraints, target market, and what success looks like for the product.</p>
+      </div>
+      <div class="step">
+        <h4>Design</h4>
+        <p>Industrial design, engineering CAD, and rapid prototypes you can hold and test.</p>
+      </div>
+      <div class="step">
+        <h4>Tool &amp; Build</h4>
+        <p>Tooling, fixtures, manufacturing setup, and pilot production runs.</p>
+      </div>
+      <div class="step">
+        <h4>Ship</h4>
+        <p>Retail packaging, fulfillment, and ongoing production at scale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== CTA =========== -->
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>Ready to make your idea a reality?</h2>
+    <p>Tell us about your product. We'll get back to you promptly.</p>
+    <a href="#" class="btn btn-accent">Request a Quote</a>
+  </div>
+</section>
+
+<!-- =========== FOOTER =========== -->
+<footer class="site">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo-white.svg" alt="Regatta Product Development" />
+        <p>Headquartered in Aubrey, Texas. Designing, building, and shipping original products since 2003.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Design &amp; Development</a></li>
+          <li><a href="#services">Tooling &amp; Setup</a></li>
+          <li><a href="#services">Manufacturing</a></li>
+          <li><a href="#services">Packaging &amp; Fulfillment</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#portfolio">Portfolio &amp; Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <ul>
+          <li>Aubrey, Texas</li>
+          <li><a href="#">hello@regattapd.com</a></li>
+          <li><a href="#">Request a Quote →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Regatta Product Development. All rights reserved.</span>
+      <span>Making your idea a reality.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
