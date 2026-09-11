@@ -12,7 +12,8 @@
     "astro": "astro",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "open-design": "python3 -m http.server 3030 --directory Design/RegattaPD-Claude-Design & sleep 1 && open http://localhost:3030"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
